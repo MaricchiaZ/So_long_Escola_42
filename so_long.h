@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 11:10:54 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:00:11 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_validmap
 typedef struct s_map
 {
 	char	**map;
+	char	**b_map;
 	t_pos	pla_pos;
 	int		line;
 	int		col;
@@ -97,21 +98,22 @@ void	init_and_put_image(void *mlx);
 // init
 void    init_map(t_map  *map);
 void	init_validate_map(t_valmp *vmap);
-
+// read 
+char    **read_maps(char **argv);
 //check
 int	check_maps(char **argv, t_sl *game);
-char    **read_maps(char **argv);
 int     check_arguments(int argc, char **argv);
 int    validate_caracters_map(t_sl *game);
+void msg_error_itens(t_sl *game);
 int    validate_itens_map(t_sl *game);
 //check2
 int square_map(t_sl *game);
 int check_vertical_wall(t_sl *game);
 int check_horizontal_wall(t_sl *game);
 int check_wall(t_sl *game);
-
-
 // valid_way
 void    player_position(t_sl *game);
+void    flood_fill(t_sl *game, int  px, int py);
+int 	valid_way(t_sl *game);
 
 #endif

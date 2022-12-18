@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:03:30 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 11:30:13 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 13:03:14 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,24 @@ int check_arguments(int argc, char **argv)
     return (0);
 }
 
-char    **read_maps(char **argv)
+void msg_error_itens(t_sl *game)
 {
-    int     fd;
-    int     read_bytes;
-    char    buffer[2];
-    char    *map;
-    char    *temp;
-    
-    read_bytes = 1;
-    fd = open (argv[1], O_RDONLY);
-    if (fd < 0)
-        return (NULL);
-    map = ft_strdup("");
-    //temp = ft_strdup("");
-    while (1)
+    if (game->vmap.e != 1)
     {
-        read_bytes = read(fd, buffer, 1);
-        if (read_bytes == -1)
-            return (NULL);
-        else if (read_bytes == 0)
-            break ;
-        buffer[1] = '\0';
-        temp = map;
-        map = ft_strjoin(temp, buffer);
-        free(temp);   
+        write(1, "Error\ninvalid number of exit in map", 36);
+        return ;     
     }
-    return (ft_split(map, '\n'));
+    if (game->vmap.p != 1 )
+    {
+        write(1, "Error\ninvalid number of player in map", 38);
+        return ;
+    }
+    if (game->vmap.c == 0)
+    {
+        write(1, "Error\ninvalid number of collectable on map", 43);
+        return ;
+    }
+
 }
 
 int    validate_caracters_map(t_sl *game)
@@ -113,7 +104,7 @@ int    validate_itens_map(t_sl *game)
     }
     if (game->vmap.e != 1 || game->vmap.p != 1 || game->vmap.c == 0)
     {
-        write(1, "Error\ninvalid itens on map", 27);
+        msg_error_itens(game);
         return (0);
     }
     return (1);
@@ -127,6 +118,7 @@ int check_maps(char **argv, t_sl *game)
         write (1, "Error\nmap error\n", 17);
         return (0);
     }
+    game->map.b_map = read_maps(argv);
     init_validate_map(&game->vmap);
     if(validate_caracters_map(game) == 0)
         return (0);
@@ -135,6 +127,8 @@ int check_maps(char **argv, t_sl *game)
     if(square_map(game) == 0)
         return (0);
     if (check_wall(game) == 0)
+        return (0);
+    if (valid_way(game) == 0)
         return (0);
     return (1);
 }

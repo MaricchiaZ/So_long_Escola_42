@@ -15,6 +15,7 @@ PATH_OBJS	= ./objs/
 SRCS	= ./main.c \
 		./check.c \
 		./check_2.c \
+		./read.c \
 		./window.c \
 		./init.c \
 		./valid_way.c \
