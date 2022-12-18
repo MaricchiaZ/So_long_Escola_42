@@ -1,0 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 19:51:42 by maclara-          #+#    #+#             */
+/*   Updated: 2022/12/17 22:21:36 by maclara-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+static char	*read_buffers(int fd, char *store_rest, char *buffer)
+{
+	int		read_bytes;
+	char	*temp_to_join;
+
+	read_bytes = 1;
+	while (1)
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+			return (NULL);
+		else if (read_bytes == 0)
+			break ;
+		buffer[read_bytes] = '\0';
+		if (!store_rest)
+			store_rest = ft_strdup("");
+		temp_to_join = store_rest;
+		store_rest = ft_strjoin(temp_to_join, buffer);
+		free(temp_to_join);
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	return (store_rest);
+}
+
+static char	*separete_line_rest(char *line)
+{
+	char	*rest_line;
+	int		i;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n')
+		i++;
+	if (line[i] == '\0' || line[1] == '\0')
+		return (NULL);
+	rest_line = ft_substr(line, i + 1, ft_strlen(line) - i);
+	if (*rest_line == '\0')
+	{
+		free(rest_line);
+		rest_line = NULL;
+	}
+	line[i + 1] = '\0';
+	return (rest_line);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	char		*buffer;
+	static char	*store_rest;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = (char *) malloc((sizeof(char)) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	line = read_buffers(fd, store_rest, buffer);
+	free(buffer);
+	if (!line)
+		return (line);
+	store_rest = separete_line_rest(line);
+	return (line);
+}
