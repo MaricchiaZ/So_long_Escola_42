@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 14:51:41 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:13:00 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,22 +111,14 @@ char    **read_maps(char **argv);
 // check
 int	check_maps(char **argv, t_sl *game);
 int     check_arguments(int argc, char **argv);
-int    validate_caracters_map(t_sl *game);
-void msg_error_itens(t_sl *game);
-int    validate_itens_map(t_sl *game);
 // check2
 int square_map(t_sl *game);
-int check_vertical_wall(t_sl *game);
-int check_horizontal_wall(t_sl *game);
 int check_wall(t_sl *game);
 // valid_way
-void    player_position(t_sl *game);
-void    flood_fill(t_sl *game, int  px, int py);
 int 	valid_way(t_sl *game);
 // window
 int	window(t_sl *game);
 // game 
-int    open_images(t_sl *game);
 void    game_work(t_sl *game);
 
 #endif

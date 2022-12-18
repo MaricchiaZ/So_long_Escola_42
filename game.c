@@ -6,13 +6,13 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 14:54:15 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:10:40 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int    open_images(t_sl *game)
+static int    open_images(t_sl *game)
 {
     int x;
     int y;
@@ -31,17 +31,17 @@ int    open_images(t_sl *game)
     return (1);
 }
 
-int recipe_key(int  keycode, t_sl *game)
+static int recipe_key(int  keycode, t_sl *game)
 {
     
 }
 
-int recipe_click(t_sl *game)
+static int recipe_click(t_sl *game)
 {
     
 }
 
-int game_draw(t_sl *game)
+static int game_draw(t_sl *game)
 {
     
 }

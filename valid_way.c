@@ -6,13 +6,13 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 09:43:09 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 13:24:19 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:12:36 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    player_position(t_sl *game)
+static void    player_position(t_sl *game)
 {
     int l;
     int c;
@@ -36,7 +36,7 @@ void    player_position(t_sl *game)
     }
 }
 // Flood fill é um algoritmo de preenchimento, sendo possível andar, ele preenche com algo.
-void    flood_fill(t_sl *game, int  px, int py) 
+static void    flood_fill(t_sl *game, int  px, int py) 
 {
     if (game->map.b_map[px][py] == '1' || game->map.b_map[px][py] == 'W') //se for muro ou um caminho já percorrido, retornamos
         return ;

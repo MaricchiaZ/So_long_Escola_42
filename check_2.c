@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:27:16 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 11:43:15 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:06:43 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int square_map(t_sl *game)
     return (0);
 }
 
-int check_vertical_wall(t_sl *game)
+static int check_vertical_wall(t_sl *game)
 {
     int x;
     int y;
@@ -56,7 +56,7 @@ int check_vertical_wall(t_sl *game)
     return (1);
 }
 
-int check_horizontal_wall(t_sl *game)
+static int check_horizontal_wall(t_sl *game)
 {
     int x;
     int y;

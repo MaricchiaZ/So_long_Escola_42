@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:03:30 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 13:03:14 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:09:41 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int check_arguments(int argc, char **argv)
     return (0);
 }
 
-void msg_error_itens(t_sl *game)
+static void msg_error_itens(t_sl *game)
 {
     if (game->vmap.e != 1)
     {
@@ -54,7 +54,7 @@ void msg_error_itens(t_sl *game)
 
 }
 
-int    validate_caracters_map(t_sl *game)
+static int    validate_caracters_map(t_sl *game)
 {
     int l;
     int c;
@@ -80,7 +80,7 @@ int    validate_caracters_map(t_sl *game)
     return (1);
 }
 
-int    validate_itens_map(t_sl *game)
+static int    validate_itens_map(t_sl *game)
 {
     int l;
     int c;
