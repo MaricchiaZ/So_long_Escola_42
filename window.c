@@ -6,24 +6,22 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:38:53 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/17 22:27:30 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:57:41 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	window_and_image()
+int	window(t_sl *game)
 {
-	// t_mlx	mlx;
-	// t_img	image;
-
-	// mlx.mlx = mlx_init();
-	// mlx.mlx_window = mlx_new_window(mlx.mlx, WIN_WID, WIN_HEI, "maclara- FDF");
-	// image.img = mlx_new_image(mlx.mlx, WIN_WID, WIN_HEI);
-	// image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_len,\
-	// &image.endian);
-	// //leitura do mapa... e taca imagem
-	// mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, image.img, 0, 0);
-	// mlx_loop(mlx.mlx);	
+	game->w_width = IMG_SIZE * game->map.col;
+	game->w_heigth = IMG_SIZE * game->map.line;
+	printf("game->w_width: %i, game->w_heigth: %i\n\n", game->w_width, game->w_heigth );
+	game->pt_mlx.mlx = mlx_init();
+	if (game->pt_mlx.mlx == NULL)
+		return (0);
+	game->pt_mlx.mlx_window = mlx_new_window(game->pt_mlx.mlx, game->w_width, game->w_heigth, "so_long - maclara-");
+	if (game->pt_mlx.mlx_window == NULL )
+		return (0);
+	return (1);
 }
-

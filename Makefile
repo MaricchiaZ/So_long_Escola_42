@@ -16,6 +16,7 @@ SRCS	= ./main.c \
 		./check.c \
 		./check_2.c \
 		./read.c \
+		./game.c \
 		./window.c \
 		./init.c \
 		./valid_way.c \

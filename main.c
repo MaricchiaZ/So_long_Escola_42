@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:06 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 09:36:52 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:46:54 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int main(int argc, char *argv[])
         return (-1);
     for(int i = 0; game.map.map[i]; i++)
         printf("%s\n", game.map.map[i]);
+    game_work(&game);
     return 0;
 }

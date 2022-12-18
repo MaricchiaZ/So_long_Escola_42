@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 13:00:11 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:51:41 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,17 @@
 # include <fcntl.h> // open,
 # include "mlx.h" // biblioteca minilibx, vai entre aspas porque ela está na pasta do projeto e não instalada no pc como as outras bibliotecas
 
+// para a func gnl
 # define BUFFER_SIZE 1
+
+// tamanho das imagens em pixels
+# define IMG_SIZE 50//largura e altura é o mesmo (imagens quadradas)
+
+// para o pressionar das teclas - VALORES PRÉ DEFINIDOS PELA X11
+# define K_PRESS 2
+# define K_MASKPRESS 1L<<0
+# define K_PRESS_X 17
+# define K_MASKPRESS_X 1L<<2
 
 typedef struct	s_mlx_pointer
 {
@@ -33,13 +43,14 @@ typedef struct	s_position
 	int	y;
 }	t_pos;
 
+// struct da mlx 
 typedef struct	s_images_datas
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
+	char	*addr; // talvez n use
+	int		bits_per_pixel; // talvez n use
+	int		line_len; // talvez n use
+	int		endian; // talvez n use
 }   t_img;
 
 typedef struct	s_draw_objs
@@ -57,7 +68,6 @@ typedef struct s_validmap
 	int	p;
 	int	e;
 }	t_valmp;
-
 
 typedef struct s_map
 {
@@ -78,9 +88,11 @@ typedef struct s_so_long
 	int		steps;
 	int		collect;
 	int		exit;
+	int		w_width; // largura da janela
+	int		w_heigth; // altura da janela 
 }	t_sl;
 
-//utils
+// utils
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
@@ -89,24 +101,20 @@ char	*ft_strdup(const char *src);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
-//gnl
+// gnl
 char	*get_next_line(int fd);
-//main
-void	window_and_image(void);
-void    open_window(void *mlx);
-void	init_and_put_image(void *mlx);
 // init
 void    init_map(t_map  *map);
 void	init_validate_map(t_valmp *vmap);
 // read 
 char    **read_maps(char **argv);
-//check
+// check
 int	check_maps(char **argv, t_sl *game);
 int     check_arguments(int argc, char **argv);
 int    validate_caracters_map(t_sl *game);
 void msg_error_itens(t_sl *game);
 int    validate_itens_map(t_sl *game);
-//check2
+// check2
 int square_map(t_sl *game);
 int check_vertical_wall(t_sl *game);
 int check_horizontal_wall(t_sl *game);
@@ -115,5 +123,10 @@ int check_wall(t_sl *game);
 void    player_position(t_sl *game);
 void    flood_fill(t_sl *game, int  px, int py);
 int 	valid_way(t_sl *game);
+// window
+int	window(t_sl *game);
+// game 
+int    open_images(t_sl *game);
+void    game_work(t_sl *game);
 
 #endif
