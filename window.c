@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:38:53 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 14:57:41 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 16:20:02 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	window(t_sl *game)
 {
-	game->w_width = IMG_SIZE * game->map.col;
-	game->w_heigth = IMG_SIZE * game->map.line;
+	game->w_width = IMG_SIZE * (game->map.col + 1);
+	game->w_heigth = IMG_SIZE * (game->map.line + 1);
 	printf("game->w_width: %i, game->w_heigth: %i\n\n", game->w_width, game->w_heigth );
 	game->pt_mlx.mlx = mlx_init();
 	if (game->pt_mlx.mlx == NULL)

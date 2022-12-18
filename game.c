@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 15:20:12 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 16:20:46 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,51 @@ static int	recipe_key(int  keycode, t_sl *game)
 
 static int	recipe_click(t_sl *game)
 {
-	
+	// dar outros frees
+	mlx_destroy_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window);
+	mlx_destroy_display(game->pt_mlx.mlx);
+	free(game->pt_mlx.mlx);
+	free(game);
+	exit (0);
 }
 
-static int	game_draw(t_sl *game)
+static void	put_one_image(t_sl *game, int line, int col)
 {
-	
+	if (game->map.map[line] && game->map.map[line][col] == '1')
+		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.wall.img, IMG_SIZE * col, IMG_SIZE * line);
+	else if (game->map.map[line] && game->map.map[line][col] == '0')
+		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.empty.img, IMG_SIZE * col, IMG_SIZE * line);
+	else if (game->map.map[line] && game->map.map[line][col] == 'P')
+		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.player.img, IMG_SIZE * col, IMG_SIZE * line);
+	else if (game->map.map[line] && game->map.map[line][col] == 'C')
+		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.collect.img, IMG_SIZE * col, IMG_SIZE * line);
+	else if (game->map.map[line] && game->map.map[line][col] == 'E')
+		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.exit.img, IMG_SIZE * col, IMG_SIZE * line);
 }
 
+static void	work_game_draw(t_sl *game)
+{
+	int	line;
+	int	col;
+	
+	line = 0;
+	while (line <= game->map.line)
+	{
+		col = 0;
+		while (col <= game->map.col)
+		{
+			put_one_image(game, line, col);
+			col++;
+		}
+		line++;
+	}
+}
+
+int	game_draw(t_sl *game)
+{
+	work_game_draw(game);
+	return (0);
+}
 
 void	game_work(t_sl *game)
 {
@@ -53,6 +90,6 @@ void	game_work(t_sl *game)
 	open_images(game);
 	mlx_hook(game->pt_mlx.mlx_window, K_PRESS, K_MASKPRESS, &recipe_key, game);
 	mlx_hook(game->pt_mlx.mlx_window, K_PRESS_X, K_MASKPRESS_X, &recipe_click, game);
-	mlx_loop_hook(game->pt_mlx.mlx_window, &game_draw, game);
+	mlx_loop_hook(game->pt_mlx.mlx, &game_draw, game);
 	mlx_loop(game->pt_mlx.mlx);
 }
