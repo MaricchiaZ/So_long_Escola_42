@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 08:37:10 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 17:09:20 by maclara-         ###   ########.fr       */
+/*   Created: 2022/09/09 00:33:17 by maclara-          #+#    #+#             */
+/*   Updated: 2022/12/18 18:02:08 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_map *map)
+void	ft_putstr(char *s)
 {
-	map->pla_pos.x = -1;
-	map->pla_pos.y = -1;
-	map->map = NULL;
-	map->line = 0;
-	map->col = 0;
-	map->item = 0;
-}
+	int	i;
 
-void	init_validate_map(t_valmp *vmap)
-{
-	vmap->c = 0;
-	vmap->p = 0;
-	vmap->e = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write (1, &s[i], 1);
+		i++;
+	}
 }

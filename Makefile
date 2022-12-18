@@ -17,11 +17,14 @@ SRCS	= ./main.c \
 		./check_2.c \
 		./read.c \
 		./game.c \
+		./move.c \
 		./window.c \
 		./init.c \
 		./valid_way.c \
 		$(PATH_GNL)get_next_line.c \
 		$(PATH_UTILS)ft_atoi.c \
+		$(PATH_UTILS)ft_itoa.c \
+		$(PATH_UTILS)ft_putstr.c \
 		$(PATH_UTILS)ft_split.c \
 		$(PATH_UTILS)ft_strchr.c \
 		$(PATH_UTILS)ft_strdup.c \

@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 15:13:00 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:04:16 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@
 # define K_MASKPRESS 1L<<0
 # define K_PRESS_X 17
 # define K_MASKPRESS_X 1L<<2
+
+// definição das teclas para poder andar no jogo em hexadecimal
+# define W 0x77
+# define S 0x73
+# define A 0x61
+# define D 0x64
+# define ESC 0xff1b
+
+// definição das setas para poder andar no jogo em hexadecimal
+# define AW_L 65361
+# define AW_UP 65362
+# define AW_R 65363
+# define AW_DN 65364
 
 typedef struct	s_mlx_pointer
 {
@@ -89,7 +102,8 @@ typedef struct s_so_long
 	int		collect;
 	int		exit;
 	int		w_width; // largura da janela
-	int		w_heigth; // altura da janela 
+	int		w_heigth; // altura da janela
+	int		end_game;
 }	t_sl;
 
 // utils
@@ -101,6 +115,8 @@ char	*ft_strdup(const char *src);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
+void	ft_putstr(char *s);
+char	*ft_itoa(int n);
 // gnl
 char	*get_next_line(int fd);
 // init
@@ -120,5 +136,7 @@ int 	valid_way(t_sl *game);
 int	window(t_sl *game);
 // game 
 void    game_work(t_sl *game);
+// move
+int move_player(t_sl *game, int keycode, int line, int col);
 
 #endif

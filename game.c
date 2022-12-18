@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 16:20:46 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:05:38 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,28 @@ static int	open_images(t_sl *game)
 
 static int	recipe_key(int  keycode, t_sl *game)
 {
+	int	line;
+	int	col;
+	char	*temp;
 	
+	line = game->map.pla_pos.y; // salvamos a posição atual do player
+	col = game->map.pla_pos.x; // salvamos a posição atual do player
+	// conferimos a tecla apertada e agimos
+	if (keycode == ESC)
+		exit (0); // mexer no futuro
+	if (keycode == W || keycode == AW_UP)
+		line--;
+	if (keycode == S || keycode == AW_DN)
+		line++;
+	if (keycode == A || keycode == AW_L)
+		col--;
+	if (keycode == D || keycode == AW_R)
+		col++;
+	if (!game->end_game) // se o end_game ainda for 0, isto é ainda não coletou tudo...
+	{
+		move_player(game, keycode, line, col); // movemos o player
+	}
+	return (1);
 }
 
 static int	recipe_click(t_sl *game)
@@ -60,7 +81,7 @@ static void	put_one_image(t_sl *game, int line, int col)
 		mlx_put_image_to_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window, game->image.exit.img, IMG_SIZE * col, IMG_SIZE * line);
 }
 
-static void	work_game_draw(t_sl *game)
+static int	game_draw(t_sl *game)
 {
 	int	line;
 	int	col;
@@ -76,11 +97,6 @@ static void	work_game_draw(t_sl *game)
 		}
 		line++;
 	}
-}
-
-int	game_draw(t_sl *game)
-{
-	work_game_draw(game);
 	return (0);
 }
 
