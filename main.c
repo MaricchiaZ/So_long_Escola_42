@@ -6,22 +6,22 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:06 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 14:46:54 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:22:20 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    t_sl    game;
-    if (check_arguments(argc, argv) == 0)
-        return (-1);
-    game.steps = 0;
-    if (check_maps (argv, &game) == 0)
-        return (-1);
-    for(int i = 0; game.map.map[i]; i++)
-        printf("%s\n", game.map.map[i]);
-    game_work(&game);
-    return 0;
+	t_sl	game;
+	if (check_arguments(argc, argv) == 0)
+		return (-1);
+	game.steps = 0;
+	if (check_maps (argv, &game) == 0)
+		return (-1);
+	for(int i = 0; game.map.map[i]; i++)
+		printf("%s\n", game.map.map[i]);
+	game_work(&game);
+	return 0;
 }

@@ -6,17 +6,17 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 08:37:10 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 11:09:03 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:20:53 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    init_map(t_map  *map)
+void	init_map(t_map *map)
 {
-   	map->pla_pos.x = -1;
-    map->pla_pos.y = -1;
-    map->map = NULL;
+	map->pla_pos.x = -1;
+	map->pla_pos.y = -1;
+	map->map = NULL;
 	map->line = 0;
 	map->col = 0;
 	map->item = 0;
