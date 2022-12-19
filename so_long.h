@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 18:04:16 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:55:27 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_so_long
 	int		exit;
 	int		w_width; // largura da janela
 	int		w_heigth; // altura da janela
-	int		end_game;
+	int		end_game; // quando for 1, permite a saída do jogo
 }	t_sl;
 
 // utils
@@ -112,11 +112,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 int	    ft_strlen(const char *s);
 char	*ft_strdup(const char *src);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 int		ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
 void	ft_putstr(char *s);
 char	*ft_itoa(int n);
+char	*ft_strstr(const char *s1, const char *s2);
 // gnl
 char	*get_next_line(int fd);
 // init
@@ -134,9 +135,15 @@ int check_wall(t_sl *game);
 int 	valid_way(t_sl *game);
 // window
 int	window(t_sl *game);
+int	destroyer_window(t_sl *game);
 // game 
 void    game_work(t_sl *game);
 // move
-int move_player(t_sl *game, int keycode, int line, int col);
+void move_player(t_sl *game, int keycode, int col, int line);
+// clear_map
+void	free_matriz_map(t_sl *game);
 
 #endif
+
+
+//valgrind --leak-check=full --show-leak-kinds=all ./so_long bigmap.ber 

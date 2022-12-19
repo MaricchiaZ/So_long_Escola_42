@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 09:43:09 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 15:23:56 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:07:24 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	player_position(t_sl *game)
 		{
 			if (game->map.map[l][c] && game->map.map[l][c] == 'P')
 			{
-				game->map.pla_pos.x = c;
-				game->map.pla_pos.y = l;
+				game->map.pla_pos.x = l;
+				game->map.pla_pos.y = c;
 				return ;
 			}
 			c++;
@@ -38,6 +38,8 @@ static void	player_position(t_sl *game)
 // Flood fill é um algoritmo de preenchimento, sendo possível andar, ele preenche com algo.
 static void	flood_fill(t_sl *game, int  px, int py) 
 {
+	if (!game->map.b_map || !game->map.b_map[px])
+		return ;
 	if (game->map.b_map[px][py] == '1' || game->map.b_map[px][py] == 'W') //se for muro ou um caminho já percorrido, retornamos
 		return ;
 	if (game->map.b_map[px][py] == 'C') // se for um coletável
@@ -65,5 +67,12 @@ int	valid_way(t_sl *game)
 		return (1); // td ok
 	}
 	write(1, "Error\ninvalid path", 19); // caso não tenha encontrado todos os coletáveis e a saída, o mapa não tem um caminho válido...
+		// para ver a func flood_fill funcionando....
+		//printf("\033[2J");
+        // for (int i = 0; game->map.b_map[i]; i++) 
+        // {
+        //     printf("%s\n", game->map.b_map[i]);
+        // }
+        // sleep(1);
 	return (0); // deu ruim
 }

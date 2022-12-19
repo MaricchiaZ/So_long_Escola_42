@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:51:42 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/17 22:21:36 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:38:25 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char	*read_buffers(int fd, char *store_rest, char *buffer)
 {
 	int		read_bytes;
-	char	*temp_to_join;
 
 	read_bytes = 1;
 	while (1)
@@ -28,9 +27,7 @@ static char	*read_buffers(int fd, char *store_rest, char *buffer)
 		buffer[read_bytes] = '\0';
 		if (!store_rest)
 			store_rest = ft_strdup("");
-		temp_to_join = store_rest;
-		store_rest = ft_strjoin(temp_to_join, buffer);
-		free(temp_to_join);
+		store_rest = ft_strjoin(store_rest, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}

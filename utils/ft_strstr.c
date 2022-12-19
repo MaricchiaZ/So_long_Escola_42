@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 16:58:00 by maclara-          #+#    #+#             */
-/*   Updated: 2022/09/01 16:58:00 by maclara-         ###   ########.fr       */
+/*   Created: 2022/09/01 12:59:52 by maclara-          #+#    #+#             */
+/*   Updated: 2022/09/01 12:59:52 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	char	*dest;
-	int		len;
-	int		i;
+	const char	*str;
+	const char	*to_find;
+	size_t		i;
+	size_t		p;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	dest = (char *) malloc (sizeof (char) * (len + 1));
-	if (dest == NULL)
-		return (NULL);
 	i = 0;
-	len = 0;
-	while (s1[i] != '\0')
-		dest[len++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		dest[len++] = s2[i++];
-	dest[len] = '\0';
-	free(s1);
-	return (dest);
+	str = s1;
+	to_find = s2;
+	if (to_find[i] == '\0')
+		return ((char *)str);
+	p = 0;
+	while (str[i] != '\0')
+	{
+		p = 0;
+		while (str[i + p] == to_find[p] && str[i + p] != '\0')
+		{
+			if (to_find[p + 1] == '\0')
+				return (&((char *)str)[i]);
+			p++;
+		}
+		i++;
+	}
+	return (NULL);
 }

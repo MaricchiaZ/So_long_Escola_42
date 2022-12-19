@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:03:30 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 15:19:30 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:39:27 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ int	check_maps(char **argv, t_sl *game)
 		return (0);
 	}
 	game->map.b_map = read_maps(argv);
+	if (game->map.b_map == NULL)
+	{
+		write (1, "Error\nmap error 2\n", 17);
+		return (0);
+	}
 	init_validate_map(&game->vmap);
 	if(validate_caracters_map(game) == 0)
 		return (0);

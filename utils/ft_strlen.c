@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:38:13 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/17 22:22:01 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:08:04 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }

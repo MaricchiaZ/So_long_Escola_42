@@ -2,7 +2,7 @@ NAME	= so_long
 
 CC	= cc
 INCLUDE	= -I ./
-CFLAGS	= -g $(INCLUDE) #-g -Wall -Wextra -Werror $(INCLUDE)
+CFLAGS	= -g -Wall -Wextra -Werror $(INCLUDE)
 MLXFLAGS	= -lmlx -Ilmlx -lXext -lX11
 
 RM	= rm -rf
@@ -21,6 +21,7 @@ SRCS	= ./main.c \
 		./window.c \
 		./init.c \
 		./valid_way.c \
+		./clear_map.c \
 		$(PATH_GNL)get_next_line.c \
 		$(PATH_UTILS)ft_atoi.c \
 		$(PATH_UTILS)ft_itoa.c \
@@ -32,6 +33,7 @@ SRCS	= ./main.c \
 		$(PATH_UTILS)ft_strlcpy.c \
 		$(PATH_UTILS)ft_strlen.c \
 		$(PATH_UTILS)ft_substr.c \
+		$(PATH_UTILS)ft_strstr.c \
 
 OBJS	= $(patsubst $(PATH_SRCS)%.c, $(PATH_OBJS)%.o, $(SRCS))
 

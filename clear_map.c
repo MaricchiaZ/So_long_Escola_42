@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 21:21:06 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 11:13:36 by maclara-         ###   ########.fr       */
+/*   Created: 2022/12/19 08:47:28 by maclara-          #+#    #+#             */
+/*   Updated: 2022/12/19 09:11:11 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+void	free_matriz_map(t_sl *game)
 {
-	t_sl	game;
-	if (check_arguments(argc, argv) == 0 || check_maps (argv, &game) == 0)
+	int	i;
+	
+	i = 0;
+	if (game->map.map == NULL)
+		return ;
+	while (game->map.map[i] && game->map.b_map[i])
 	{
-		free_matriz_map(&game);
-		return (0);
+		free(game->map.map[i]);
+		free(game->map.b_map[i]);
+		i++;
 	}
-	game.steps = 0;
-	// for(int i = 0; game.map.map[i]; i++)
-	// 	printf("%s\n", game.map.map[i]);
-	game.end_game = 0;
-	game_work(&game);
-	return 0;
+	free(game->map.map);
+	free(game->map.b_map);
 }

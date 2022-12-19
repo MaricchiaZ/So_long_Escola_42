@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:49:13 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/18 18:06:16 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:05:34 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	move_be_ok(t_sl *game, int keycode, int line, int col)
 }
 
 // line e col já vem modificadas pela tecla apertada
-int move_player(t_sl *game, int keycode, int line, int col)
+void move_player(t_sl *game, int keycode, int col, int line)
 {
 	char	*temp;
 	int	px; //valor x da posição do player
@@ -44,14 +44,15 @@ int move_player(t_sl *game, int keycode, int line, int col)
 	{
 		if (game->map.map[line][col] == 'C') // ao encontrar um coletável
 			game->vmap.c--; // consumimos o mesmo
-		game->map.map[py][px] = '0'; // mudamos a info do mapa pra 0 (caminho livre)
+		game->map.map[px][py] = '0'; // mudamos a info do mapa pra 0 (caminho livre)
 		game->map.map[line][col] = 'P'; // mudamos a info do mapa P (player)
-		game->map.pla_pos.x = col; // posição nova do player
-		game->map.pla_pos.y = line; //posição nova do player
+		game->map.pla_pos.y = col; // posição nova do player
+		game->map.pla_pos.x = line; //posição nova do player
 		game->steps++;
 		temp = ft_itoa(game->steps);
 		ft_putstr("Steps move: ");
 		ft_putstr(temp);
 		ft_putstr("\n");
+		free(temp);
 	}
 }
