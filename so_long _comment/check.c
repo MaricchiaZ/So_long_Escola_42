@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:03:30 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 10:39:27 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:13:39 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ static void	msg_error_itens(t_sl *game)
 {
 	if (game->vmap.e != 1)
 	{
-		write(1, "Error\ninvalid number of exit in map", 36);
+		write(1, "Error\ninvalid number of exit in map\n", 37);
 		return ;     
 	}
 	if (game->vmap.p != 1 )
 	{
-		write(1, "Error\ninvalid number of player in map", 38);
+		write(1, "Error\ninvalid number of player in map\n", 39);
 		return ;
 	}
 	if (game->vmap.c == 0)
 	{
-		write(1, "Error\ninvalid number of collectable on map", 43);
+		write(1, "Error\ninvalid number of collectable on map\n", 44);
 		return ;
 	}
 }
@@ -69,7 +69,7 @@ static int	validate_caracters_map(t_sl *game)
 			game->map.map[l][c] != 'C' && game->map.map[l][c] != 'E' && \
 			game->map.map[l][c] != '0' && game->map.map[l][c] != '1'))
 			{
-				write(1,"Error\nCaracter invalid in map", 30);
+				write(1,"Error\nCaracter invalid in map\n", 31);
 				return (0);
 			}
 			c++;
