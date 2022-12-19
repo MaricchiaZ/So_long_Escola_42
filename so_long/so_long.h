@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:21:58 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 12:43:55 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:15:11 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,6 @@ void	game_work(t_sl *game);
 // move
 void	move_player(t_sl *game, int keycode, int col, int line);
 // clear_map
-void	free_matriz_map(t_sl *game);
+void	free_matrix_map(t_sl *game);
 
 #endif

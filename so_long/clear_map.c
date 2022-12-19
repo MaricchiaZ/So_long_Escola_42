@@ -6,13 +6,13 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 08:47:28 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 11:35:31 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:14:47 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_matriz_map(t_sl *game)
+void	free_matrix_map(t_sl *game)
 {
 	int	i;
 

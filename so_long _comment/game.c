@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 12:28:31 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:08:02 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ void	game_work(t_sl *game)
 	open_images(game);
 	mlx_hook(game->pt_mlx.mlx_window, K_PRESS, 1L<<0, &recipe_key, game);
 	mlx_hook(game->pt_mlx.mlx_window, K_PRESS_X, 1L<<2, &destroyer_window, game);
-	mlx_loop_hook(game->pt_mlx.mlx, &game_draw, game);
+	mlx_loop_hook(game->pt_mlx.mlx, &game_draw, game); 
 	mlx_loop(game->pt_mlx.mlx);
 }
