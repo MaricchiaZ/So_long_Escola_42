@@ -135,7 +135,7 @@ int	check_maps(char **argv, t_sl *game)
 		return (0); // checagem encontrou um erro
 	if (check_wall(game) == 0) // se alguma parede externa estiver incompleta
 		return (0); // checagem encontrou um erro
-	if (valid_way(game) == 0) // se não existit um caminho possível, isto é, o mapa não for válido
+	if (valid_way(game) == 0) // se não existe um caminho possível, isto é, o mapa não for válido
 		return (0); // checagem encontrou um erro
 	return (1); // // checagem ok
 }
