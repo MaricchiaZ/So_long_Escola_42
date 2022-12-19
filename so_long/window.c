@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:38:53 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 12:16:12 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:16:51 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	window(t_sl *game)
 	game->pt_mlx.mlx = mlx_init();
 	if (game->pt_mlx.mlx == NULL)
 	{
-		free_matriz_map(game);
+		free_matrix_map(game);
 		return (0);
 	}
 	game->pt_mlx.mlx_window = mlx_new_window(game->pt_mlx.mlx, game->w_width, \
@@ -31,7 +31,7 @@ int	window(t_sl *game)
 
 int	destroyer_window(t_sl *game)
 {
-	free_matriz_map(game);
+	free_matrix_map(game);
 	if (!game->pt_mlx.mlx)
 		exit (0);
 	mlx_clear_window(game->pt_mlx.mlx, game->pt_mlx.mlx_window);

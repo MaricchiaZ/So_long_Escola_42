@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:51:42 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 09:38:25 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:04:29 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*read_buffers(int fd, char *store_rest, char *buffer)
 {
-	int		read_bytes;
+	int		read_bytes; // armazena o número de bytes lido
 
 	read_bytes = 1;
 	while (1)

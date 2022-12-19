@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 12:38:00 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:18:35 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ static int	game_draw(t_sl *game)
 		}
 		line++;
 	}
-	return (0);
+	if (game->end_game)
+		mlx_string_put(game->pt_mlx.mlx, game->pt_mlx.mlx_window, \
+		game->w_width / 2 - 25, game->w_heigth / 2, 0xFFF, "You Win!!!");
+	return (1);
 }
 
 void	game_work(t_sl *game)
