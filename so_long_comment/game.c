@@ -6,7 +6,7 @@
 /*   By: maclara- <maclara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:09:49 by maclara-          #+#    #+#             */
-/*   Updated: 2022/12/19 16:31:46 by maclara-         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:35:24 by maclara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,6 @@ static void	put_one_image(t_sl *game, int line, int col)
 		game->image.exit.img, IMG_SIZE * col, IMG_SIZE * line); // a função mlx_put_image_to_window coloca a imagem da saída
 }
 
-// função que lê o mapa e coloca a imagem adequada
-static int	game_draw(t_sl *game)
-{
-	int	line; // para percorrer o mapa
-	int	col; // para percorrer o mapa
-
-	line = 0;
-	while (line <= game->map.line) // enquanto ainda tiver linha para ler
-	{
-		col = 0;
-		while (col <= game->map.col) // enquanto ainda tiver coluna na linha pra ler
-		{
-			put_one_image(game, line, col); // coloca-se a imagem adequada
-			col++; // próxima coluna
-		}
-		line++; // proxima linha
-	}
-	if (game->end_game) // se o game->end_game for diferente de zero, o jogador ganhou o jogo
-		mlx_string_put(game->pt_mlx.mlx, game->pt_mlx.mlx_window, \
-		game->w_width / 2 - 25, game->w_heigth / 2, 0xFFF, "You Win!!!"); // usamos essa função 'mlx_string_put' para escrever na tela 
-	return (1); //ok
-}
-
 // recebe as infos das teclas acionadas
 static int	recipe_key(int keycode, t_sl *game)
 {
@@ -109,14 +86,44 @@ static int	recipe_key(int keycode, t_sl *game)
 	return (1); // ok
 }
 
+// função que lê o mapa e coloca a imagem adequada
+static int	game_draw(t_sl *game)
+{
+	int	line; // para percorrer o mapa
+	int	col; // para percorrer o mapa
+
+	line = 0;
+	while (line <= game->map.line) // enquanto ainda tiver linha para ler
+	{
+		col = 0;
+		while (col <= game->map.col) // enquanto ainda tiver coluna na linha pra ler
+		{
+			put_one_image(game, line, col); // coloca-se a imagem adequada
+			col++; // próxima coluna
+		}
+		line++; // proxima linha
+	}
+	if (game->end_game) // se o game->end_game for diferente de zero, o jogador ganhou o jogo
+		mlx_string_put(game->pt_mlx.mlx, game->pt_mlx.mlx_window, \
+		game->w_width / 2 - 25, game->w_heigth / 2, 0xFFF, "You Win!!!"); // usamos essa função 'mlx_string_put' para escrever na tela 
+	return (1); //ok
+}
+
+
 // funçao que orquestra as funções que abrem a janela, abrem as imagens, recebem os cliques das teclas (movimentação do player), clique no botão de fechar a tela, o loop da imagem na tela, e o loop as funções da mlx
 void	game_work(t_sl *game)
 {
-	window(game); // inicializa a mlx, a janela e a imagem
-	open_images(game); // abre as imagens dos componentes do jogo
-	mlx_hook(game->pt_mlx.mlx_window, K_PRESS, 1L << 0, &recipe_key, game); // cliques do teclado, pra jogar
-	mlx_hook(game->pt_mlx.mlx_window, K_PRESS_X, 1L << 2, \
-	&destroyer_window, game); // clique do esc, pra fechar a janela
-	mlx_loop_hook(game->pt_mlx.mlx, &game_draw, game); // desenha o jogo
-	mlx_loop(game->pt_mlx.mlx); // mantém as func da mlx em loop
+	int	check_win; // recebe a checagem da abertura da janela
+
+	check_win = window(game); // inicializa a mlx, a janela e a imagem
+	if (check_win) // se a janela abrir, check_win = 1
+	{
+		open_images(game); // abre as imagens dos componentes do jogo
+		mlx_hook(game->pt_mlx.mlx_window, K_PRESS, 1L << 0, &recipe_key, game); // cliques do teclado, pra jogar
+		mlx_hook(game->pt_mlx.mlx_window, K_PRESS_X, 1L << 2, \
+		&destroyer_window, game); // clique do esc, pra fechar a janela
+		mlx_loop_hook(game->pt_mlx.mlx, &game_draw, game); // desenha o jogo
+		mlx_loop(game->pt_mlx.mlx); // mantém as func da mlx em loop	
+	}
+	write(1, "Error\nXlaunch not found\n", 24); // avisa que não achou o Xlaunch, que abre os executáveis da wsl com interface gráfica
 }
